@@ -7,7 +7,18 @@
 ---
 
 ## 🚀 About Me
-I'm a passionate engineer specializing in **Computer Science** and **Automation**, currently pursuing a Master's degree at **Università Politecnica delle Marche**. My expertise spans **machine learning**, **deep learning**, **computer vision**, and **software development**. I thrive in collaborative projects that solve real-world problems through innovation.
+I'm passionate about **creating software solutions** and **developing neural network models** to solve real-world problems. I enjoy working with **microprocessors** to build automation and home automation systems, combining technology and creativity.
+
+Beyond my professional interests, I'm a curious and enthusiastic learner who is always eager to explore new knowledge. I value meaningful connections and enjoy being around people, making new friends, and learning about different cultures and traditions.  
+
+### My Hobbies:
+- ⚽ **Playing soccer**: Staying active and having fun with teammates.
+- 🎣 **Fishing**: Relaxing in nature and embracing patience.
+- ✈️ **Traveling**: Exploring new places and discovering unique cultures.
+- 💃 **Dancing**: Enjoying music and the energy of the dance floor.
+- 🌍 **Connecting with people**: Building relationships and learning from others' perspectives.
+
+I firmly believe that learning never stops, and I strive to expand my skills and knowledge every day.
 
 ---
 
