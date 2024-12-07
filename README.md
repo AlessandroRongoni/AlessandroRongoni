@@ -2,7 +2,7 @@
 
 🚀 **Informatic and Automation Engineering Student**  
 🌍 Based in Fermo, Italy  
-📧 [alessandro.rongoni2000@gmail.com](mailto:alessandro.rongoni2000@gmail.com) 
+📧 [alessandro.rongoni2000@gmail.com](mailto:alessandro.rongoni2000@gmail.com)  
 🔗 [LinkedIn](https://linkedin.com/in/alessandro-rongoni) | [GitHub](https://github.com/AlessandroRongoni)
 
 ---
