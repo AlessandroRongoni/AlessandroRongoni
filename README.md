@@ -101,6 +101,18 @@ Collaborated on a **cloud-based IoT solution** to monitor and control greenhouse
 
 ![Alessandro's GitHub stats](https://github-readme-stats.vercel.app/api?username=AlessandroRongoni&show_icons=true&theme=radical)
 
+### 🛠️ Languages and Tools
+
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=AlessandroRongoni&layout=compact&theme=radical)
+
+### 🏆 GitHub Trophies
+
+![Trophies](https://github-profile-trophy.vercel.app/?username=AlessandroRongoni&theme=radical&no-frame=true&row=1&column=6)
+
+### 🔥 Streak Stats
+
+[![GitHub Streak](https://streak-stats.demolab.com/?user=AlessandroRongoni&theme=radical)](https://git.io/streak-stats)
+
 ---
 
 Feel free to explore my repositories and connect with me for collaboration opportunities! 😊
