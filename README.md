@@ -111,8 +111,7 @@ Collaborated on a **cloud-based IoT solution** to monitor and control greenhouse
 
 ### 🔥 Streak Stats
 
-![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=AlessandroRongoni&theme=radical)
-
+![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=AlessandroRongoni&theme=radical&cache_seconds=86400)
 
 ---
 
