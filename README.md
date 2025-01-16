@@ -109,14 +109,6 @@ Collaborated on a **cloud-based IoT solution** to monitor and control greenhouse
 
 ![Trophies](https://github-profile-trophy.vercel.app/?username=AlessandroRongoni&theme=radical&no-frame=true&row=1&column=6)
 
-### 🔥 Streak Stats
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=AlessandroRongoni&theme=dark">
-  <source media="(prefers-color-scheme: light)" srcset="https://streak-stats.demolab.com/?user=AlessandroRongoni&theme=default">
-  <img src="https://streak-stats.demolab.com/?user=AlessandroRongoni&theme=default" alt="GitHub Streak Stats">
-</picture>
-
 
 ---
 
