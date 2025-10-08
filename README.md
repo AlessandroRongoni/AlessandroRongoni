@@ -137,9 +137,9 @@ Android app for tracking calorie intake and physical activity using **TensorFlow
 ## 🏆 Achievements
 
 - 🧪 **Winner – CERN Beamline for Schools (2017)**  
-- 📄 **Multiple IEEE Publications (MESA 2024, MetroXRAINE 2025, CoDIT 2025, MIM 2025)**  
-- 🌐 **First-author Journal Paper in MDPI Robotics (2025)**
-
+- 📄 **Co-author of multiple IEEE publications** (MESA 2024, MetroXRAINE 2025, CoDIT 2025, MIM 2025)  
+- 🌐 **First-author paper – IEEE MetroXRAINE (2025)**
+  
 ---
 
 ## 📈 GitHub Stats
