@@ -1,6 +1,6 @@
 # 👋 Hi, I'm Alessandro Rongoni
 
-🚀 **Computer Science Researcher**  
+🚀 **AI & Computer Vision Engineer**  
 🎓 **MSc Graduate in Computer and Automation Engineering** – Università Politecnica delle Marche  
 🌍 Based in Fermo, Italy  
 📧 [alessandro.rongoni2000@gmail.com](mailto:alessandro.rongoni2000@gmail.com)  
