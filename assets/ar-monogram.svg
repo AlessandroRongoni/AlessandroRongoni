@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320" role="img" aria-label="AR logo — Alessandro Rongoni">
+ <title>AR — Alessandro Rongoni</title>
+ <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#07121F"/><stop offset="1" stop-color="#15334B"/></linearGradient><linearGradient id="letter" x2="1" y2="1"><stop stop-color="#ECFDFF"/><stop offset=".52" stop-color="#43D7EB"/><stop offset="1" stop-color="#218BB9"/></linearGradient></defs>
+ <rect width="320" height="320" rx="58" fill="url(#bg)"/>
+ <circle cx="160" cy="160" r="122" fill="none" stroke="#285C74" stroke-width="1.5"/>
+ <circle cx="160" cy="160" r="104" fill="none" stroke="#3E7891" stroke-dasharray="3 9" opacity=".48"/>
+ <path d="M109 219 L158 101 L177 101 L220 219 L195 219 L167 135 L133 219 Z" fill="url(#letter)"/>
+ <path d="M145 184H190" stroke="#07121F" stroke-width="9"/>
+ <path d="M176 101H208C243 101 257 118 257 139C257 160 243 171 222 176L262 220H231L189 170L191 150H212C227 150 232 147 232 137C232 128 223 126 209 126H183Z" fill="url(#letter)"/>
+ <path d="M52 260H268" stroke="#31BCCA" stroke-opacity=".45" stroke-width="1.5"/>
+</svg>
