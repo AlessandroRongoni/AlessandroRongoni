@@ -78,7 +78,10 @@ def openalex_works() -> list[dict]:
         if not url:
             continue
         source = ((w.get("primary_location") or {}).get("source") or {}).get("display_name")
-        rows.append({"title": title, "doi": doi, "year": w.get("publication_year"), "date": w.get("publication_date") or "", "venue": source or "Research output", "url": url})
+        author_names = [((a.get("author") or {}).get("display_name") or "").strip() for a in authors]
+        author_names = [a for a in author_names if a]
+        author_string = "; ".join(author_names[:8]) + ("; et al." if len(author_names) > 8 else "")
+        rows.append({"title": title, "doi": doi, "year": w.get("publication_year"), "date": w.get("publication_date") or "", "venue": source or "Research output", "url": url, "authors": author_string, "type": "journal" if (((w.get("primary_location") or {}).get("source") or {}).get("type") or "").lower() == "journal" else "other"})
     return rows
 
 
@@ -126,19 +129,49 @@ def merged_publications(curated: list[dict], discovered: list[dict]) -> list[dic
     return sorted(rows, key=lambda w: (int(w.get("year") or 0), str(w.get("date") or "")), reverse=True)
 
 
-def render_publications(items: list[dict], limit: int = 16) -> str:
-    sections, current = [], None
-    for item in items[:limit]:
-        year = str(item.get("year") or "Other")
-        if current != year:
-            sections.append("### " + escape_md(year))
-            current = year
-        title = escape_md(" ".join(item["title"].split()))
-        venue = escape_md(item.get("venue") or "Research output")
-        note = str(item.get("note") or "")
-        suffix = " · " + escape_md(note) if note else ""
-        sections.append(f'- **[{title}]({item["url"]})**  \n  {venue} · {year}{suffix}')
-    return "\n".join(sections) if sections else "_See publications on ORCID._"
+def format_authors(value: str) -> str:
+    """Escape bibliographic author list, emphasizing the profile owner."""
+    authors = [escape_md(x.strip()) for x in str(value or "").split(";") if x.strip()]
+    return ", ".join(re.sub(r"(?i)\bA\.\s*Rongoni\b", "**A. Rongoni**", a) for a in authors)
+
+
+def render_publications(items: list[dict], limit: int = 30) -> str:
+    """Grouped publication section with stable curated information and new discoveries."""
+    groups = [
+        ("journal", "📰 Journal Articles"),
+        ("conference", "🎤 Conference & Workshop Papers"),
+        ("other", "📑 Other Research Outputs"),
+    ]
+    output = []
+    for group_name, group_heading in groups:
+        included = [x for x in items[:limit] if x.get("type", "other") == group_name]
+        if not included:
+            continue
+        output.append("### " + group_heading)
+        output.append("")
+        current_year = None
+        for item in included:
+            year = str(item.get("year") or "Other")
+            if year != current_year:
+                output.append("#### " + escape_md(year))
+                output.append("")
+                current_year = year
+            title = escape_md(" ".join(item["title"].split()))
+            venue = escape_md(item.get("venue") or "Research output")
+            authors = format_authors(item.get("authors") or "")
+            note = str(item.get("note") or "")
+            note_label = " ⭐ *First author*" if note.lower() == "first author" else ""
+            record = f'- **[{title}]({item["url"]})**{note_label}'
+            if authors:
+                record += f"  \n  {authors}"
+            record += f"  \n  *{venue}*, {year}."
+            if item.get("doi"):
+                record += f' · [DOI](https://doi.org/{item["doi"]})'
+            elif item.get("url") and "arxiv.org" in item["url"]:
+                record += f' · [arXiv]({item["url"]})'
+            output.append(record)
+            output.append("")
+    return "\n".join(output).strip() if output else "_See publications on ORCID._"
 
 
 def write_if_changed(path: Path, content: str) -> bool:
