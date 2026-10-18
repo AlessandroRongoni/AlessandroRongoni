@@ -93,13 +93,46 @@ class ProfileTests(unittest.TestCase):
                     profile.update_activity()
             self.assertEqual(svg.read_text(), "<svg/>")
 
-    def test_initial_banner_is_vector_not_embedded_bitmap(self):
-        svg = (Path(__file__).resolve().parents[1] / "assets" / "profile-header.svg").read_text()
-        ET.fromstring(svg)
-        self.assertIn("Alessandro Rongoni", svg)
-        self.assertIn("SOFTWARE ENGINEER", svg)
-        self.assertNotIn("data:image", svg)
-        self.assertNotIn("<image", svg)
+    def test_banner_is_exact_png_asset(self):
+        import struct
+        banner = Path(__file__).resolve().parents[1] / "assets" / "profile-header.png"
+        with banner.open("rb") as fh:
+            header = fh.read(24)
+        self.assertEqual(header[:8], b"\x89PNG\r\n\x1a\n")
+        self.assertGreaterEqual(struct.unpack(">I", header[16:20])[0], 2000)
+
+    def test_original_profile_sections_and_stats_are_retained(self):
+        readme = (Path(__file__).resolve().parents[1] / "README.md").read_text(encoding="utf-8")
+        sections = ["About Me", "Featured Projects", "Publications", "Education", "Experience", "Achievements", "GitHub Stats"]
+        for sec in sections:
+            self.assertIn(sec, readme)
+        for technology in ["Python", "C++", "PHP", "React", "Firebase", "Arduino", "ESP32", "YOLO", "TensorFlow", "Rasa"]:
+            self.assertIn(technology, readme)
+        for suffix in ["api?username=AlessandroRongoni", "api/top-langs/?username=AlessandroRongoni", "github-profile-trophy.vercel.app"]:
+            self.assertIn(suffix, readme)
+        self.assertIn('src="./assets/profile-header.png"', readme)
+
+    def test_sync_preserves_badges_projects_emojis_and_stats(self):
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_readme = Path(tmp) / "README.md"
+            original = (Path(__file__).resolve().parents[1] / "README.md").read_text(encoding="utf-8")
+            tmp_readme.write_text(original, encoding="utf-8")
+            data_path = Path(__file__).resolve().parents[1] / "data" / "publications.json"
+            with patch.object(profile, "README", tmp_readme), patch.object(profile, "CURATED", data_path), patch.object(profile, "openalex_works", return_value=[]), patch.object(profile, "orcid_works", return_value=[]):
+                profile.update_publications()
+            updated = tmp_readme.read_text(encoding="utf-8")
+            a = original.split(profile.START)[0], original.split(profile.END)[1]
+            b = updated.split(profile.START)[0], updated.split(profile.END)[1]
+            self.assertEqual(a, b)
+            for item in ("🏆 Achievements", "🎨 Beyond Code", "![Arduino]", "![TensorFlow]", "github-profile-trophy.vercel.app"):
+                self.assertIn(item, updated)
+
+    def test_publication_authors_retained(self):
+        out = profile.render_publications([{"title": "Example", "year": 2026, "venue": "Venue", "doi": "10.1234/example", "url": "https://doi.org/10.1234/example", "authors": "C. Researcher; A. Rongoni; et al.", "note": "First author"}])
+        self.assertIn('**A. Rongoni**', out)
+        self.assertIn('⭐ *First author*', out)
+        self.assertIn('[DOI](https://doi.org/10.1234/example)', out)
 
 
 if __name__ == "__main__":

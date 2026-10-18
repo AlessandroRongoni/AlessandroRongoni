@@ -1,47 +1,54 @@
-# Profile data pipeline
+# Profile maintenance and scholarly-data integration
 
-Technical maintenance notes. These details are intentionally not included in the public README.
+These are maintainer notes, not part of the rendered GitHub profile.
 
-## What gets updated
+## What updates automatically
 
-- `README.md`, between the `AUTO-PUBLICATIONS` comments: combines **hand-reviewed bibliographic references** from `data/publications.json` with new public works linked to **ORCID `0009-0002-2907-8998`** via OpenAlex. Direct ORCID public API access is optional. Existing hand-reviewed papers remain present even when scholarly APIs are slow or incomplete.
-- `assets/github-activity.svg`: contribution calendar and aggregate commit/PR/issue counts via GitHub GraphQL (previous 12 months, subject to token visibility).
-- `assets/github-languages.svg`: languages determined by byte counts from public, owned, non-fork, non-archived repositories. **Private repositories are explicitly excluded**, including when a more privileged token is configured.
+- **Publications:** the block between `<!-- AUTO-PUBLICATIONS:START -->` and `<!-- AUTO-PUBLICATIONS:END -->` in `README.md` is regenerated from **hand-reviewed** `data/publications.json` plus newly discovered public works associated with ORCID `0009-0002-2907-8998` through OpenAlex (and optionally ORCID's API). The curated works take precedence, so the complete author names and publication links you've entered are never overwritten by lower-quality metadata. Projects, badge sections, hobbies, education, experience and achievements are **never changed** by the script.
+- **Additional contribution graph:** `assets/github-activity.svg` is regenerated from GitHub GraphQL when a usable token is available. Calendar counts and commits/PRs/issues reflect visibility and attribution rules; names and code of private repositories are never written.
+- **Additional languages graph:** `assets/github-languages.svg` collects byte counts from **public**, owned, non-fork, non-archived repositories. This does not measure coding proficiency and deliberately omits private repo language composition.
 
-The `assets/profile-header.svg`, project descriptions and About section are maintained manually and are never rewritten by the job. All SVG is self-contained; no third-party card-hosting service is needed.
+The **classic Github Readme Stats cards**, the **Top Languages card** and **GitHub Trophies** are intentionally restored, embedded by URL in `README.md` and independent of Actions. Their public endpoints may occasionally be unavailable because of third-party hosting or GitHub API rate limits. Self-hosting those services separately is required if you need stronger availability guarantees.
 
-## Enabling the scheduled workflow
+## First setup
 
-1. Copy all files including the hidden `.github` directory to the profile repository `AlessandroRongoni/AlessandroRongoni` on a feature branch and open a pull request.
-2. Merge the branch into `main` (scheduled GitHub Actions run from the **default** branch).
-3. Ensure repository **Settings → Actions → General** permits Actions, with workflow write permissions where needed; branch protection/rulesets can block a workflow push.
-4. Open **Actions → Update profile data → Run workflow** to populate cards without waiting for the schedule.
-5. The job is scheduled daily at 03:17 UTC (12:17 JST). GitHub can delay schedules or disable schedules for inactive public repositories.
+1. Merge the branch into the default branch, `main`.
+2. Ensure Actions are enabled and workflow token has `contents: write` permissions. Branch rules can block automated commits.
+3. Actions → **Update profile data** → **Run workflow**. Inspect logs and resulting diff.
+4. The schedule is `17 3 * * *`, or **12:17 JST daily**; GitHub may delay or disable scheduled workflows on inactive repositories.
 
-## Optional secrets
+## Optional GitHub Actions secrets
 
-Configure **Settings → Secrets and variables → Actions** as needed:
+| Secret | Purpose |
+|---|---|
+| `PROFILE_STATS_TOKEN` | Optional permissioned token for activity collection. Use least privilege; do not paste into README. |
+| `ORCID_PUBLIC_TOKEN` | Optional read-public API access token for ORCID. |
+| `ORCID_CLIENT_ID` and `ORCID_CLIENT_SECRET` | Optional ORCID public API client credentials, used to obtain `/read-public`. |
+| `OPENALEX_API_KEY` | Optional OpenAlex key; improves quota reliability. |
 
-| Secret | Purpose | Required |
-|---|---|---|
-| `PROFILE_STATS_TOKEN` | More complete authenticated GraphQL contribution visibility | No |
-| `ORCID_PUBLIC_TOKEN` | ORCID public `/read-public` access token | No |
-| `ORCID_CLIENT_ID` + `ORCID_CLIENT_SECRET` | ORCID public API client credentials, used instead of a fixed access token | No |
-| `OPENALEX_API_KEY` | Increased OpenAlex API budget | No |
+OpenAlex can handle small-scale public queries without a key. ORCID is linked visibly in README regardless of whether its optional direct API token is configured. Without a direct ORCID token, newly discovered papers can still enter via OpenAlex indexing.
 
-Basic GitHub statistics use the workflow's `GITHUB_TOKEN`; the OpenAlex query can run without an API key. A personal token is **not** embedded in SVG or README. If you set `PROFILE_STATS_TOKEN`, apply the minimum permissions required and review access to organization resources carefully.
+## Private contributions
 
-To count qualifying **private contributions anonymously on GitHub's own calendar**, enable **Profile → Contribution settings → Private contributions**. With the Actions-provided `GITHUB_TOKEN`, the embedded custom chart may not expose all private activity from other repositories. `PROFILE_STATS_TOKEN` may extend coverage, but actual counts are governed by GitHub API permissions, organizational policies and contribution eligibility. Do not assume the private work is fully represented unless you compare the numbers.
+- On your GitHub profile, enable **Contribution settings → Private contributions** to display eligible private contributions **anonymously** on GitHub's native calendar.
+- The two external `github-readme-stats` cards are public-data cards by default; they do **not** magically acquire access to your private repos from GitHub Actions secrets.
+- The custom contribution graph can receive broader counts if the token has access, but does not guarantee all private/organization contributions; GitHub's contribution eligibility, SSO and visibility affect totals. Check against your actual profile.
+- Private repository names, code, languages and file details are never published in this package.
 
-## Manual publications
+## Add or correct a paper
 
-If a recent paper is missing from scholarly indexes, add it to `data/publications.json` with the accurate `title`, `year`, `venue` and either `doi` or an `https://` `url`. Optional `note` can specify `First author`, etc. Never add a paper solely on the basis of an unverified title.
+Edit `data/publications.json`. Each entry uses `title`, `year`, `venue`, `authors` (semicolon-separated), and a `doi` or an `https://` `url`. An optional `note: "First author"` adds a first-author highlight. Curated records are shown even if ORCID/OpenAlex are temporarily unavailable. For new public items indexed by ORCID/OpenAlex, the script appends them (deduplicated by title and DOI).
 
-## Local verification
+To verify locally:
 
 ```bash
 python3 -m unittest discover -s tests -v
-python3 scripts/sync_profile.py  # uses live public APIs; optional GitHub token
+python3 scripts/sync_profile.py   # live network required for source updates
 ```
 
-Changes in the generated data are committed only when the actual content changes. Errors preserve existing SVGs and publication content; no fake activity counts are generated.
+## Safety
+
+- The generator writes only the controlled publications block and the two SVG data assets.
+- API error cases preserve previous assets and bibliographic information.
+- No fictional activity counts, private repo names or credentials appear in README or image assets.
+- No dependency installation is required; only Python 3.12 standard library.

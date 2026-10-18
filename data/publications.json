@@ -1,10 +1,68 @@
 [
-  {"title": "Time series Foundation Models based on Physics-Informed Synthetic Histories for Cold-Start Photovoltaic Forecasting", "year": 2026, "venue": "ICML Workshop on Foundation Models for Structured Data", "url": "https://arxiv.org/abs/2606.07457"},
-  {"title": "Real-Time Dolphin Whistle Detection on Raspberry Pi Zero 2 W with a TFLite Convolutional Neural Network", "year": 2025, "venue": "Robotics", "doi": "10.3390/robotics14050067"},
-  {"title": "Spotting the Aggressor: Pose-Based Violence Detection Through Spatial-Temporal Deep Learning Techniques", "year": 2025, "venue": "IEEE MetroXRAINE", "doi": "10.1109/MetroXRAINE66377.2025.11340312", "note": "First author"},
-  {"title": "Preventing Elderly Injuries: A Pose-Based Framework for Fall Detection", "year": 2025, "venue": "IEEE MetroXRAINE", "doi": "10.1109/MetroXRAINE66377.2025.11340043"},
-  {"title": "A Lightweight Deep Learning Approach for Lithium-ion Battery RUL Estimation", "year": 2025, "venue": "IEEE CoDIT", "doi": "10.1109/CoDIT66093.2025.11321479"},
-  {"title": "ESN-based Distributed Inference Methods for Production Line Energy Forecasting", "year": 2025, "venue": "IFAC-PapersOnLine", "doi": "10.1016/j.ifacol.2025.09.375"},
-  {"title": "Benchmark Analysis of YOLOv8 for Edge AI Video-Surveillance Applications", "year": 2024, "venue": "IEEE/ASME MESA", "doi": "10.1109/MESA61532.2024.10704889"},
-  {"title": "A Low-Cost Cherenkov Detector to Be Tested in CERN's T9 Beam Line", "year": 2018, "venue": "Proceedings of Science", "url": "https://cds.cern.ch/record/2669840"}
+  {
+    "title": "Time series Foundation Models based on Physics-Informed Synthetic Histories for Cold-Start Photovoltaic Forecasting",
+    "year": 2026,
+    "venue": "ICML Workshop on Foundation Models for Structured Data",
+    "url": "https://arxiv.org/abs/2606.07457",
+    "authors": "L. Longarini; A. Rongoni; S. Silenzi; E. Frontoni; R. Rosati",
+    "note": "ICML workshop poster",
+    "type": "conference"
+  },
+  {
+    "title": "Real-Time Dolphin Whistle Detection on Raspberry Pi Zero 2 W with a TFLite Convolutional Neural Network",
+    "year": 2025,
+    "venue": "Robotics, 14(5), 67",
+    "doi": "10.3390/robotics14050067",
+    "authors": "R. De Marco; F. Di Nardo; A. Rongoni; et al.",
+    "type": "journal"
+  },
+  {
+    "title": "Spotting the Aggressor: Pose-Based Violence Detection Through Spatial-Temporal Deep Learning Techniques",
+    "year": 2025,
+    "venue": "IEEE MetroXRAINE",
+    "doi": "10.1109/MetroXRAINE66377.2025.11340312",
+    "note": "First author",
+    "authors": "A. Rongoni; L. Longarini; M. R. Prist; G. Pompei; A. F. Dragoni",
+    "type": "conference"
+  },
+  {
+    "title": "Preventing Elderly Injuries: A Pose-Based Framework for Fall Detection",
+    "year": 2025,
+    "venue": "IEEE MetroXRAINE",
+    "doi": "10.1109/MetroXRAINE66377.2025.11340043",
+    "authors": "L. Longarini; A. Rongoni; M. R. Prist; G. Pompei; A. F. Dragoni",
+    "type": "conference"
+  },
+  {
+    "title": "A Lightweight Deep Learning Approach for Lithium-ion Battery RUL Estimation",
+    "year": 2025,
+    "venue": "IEEE CoDIT",
+    "doi": "10.1109/CoDIT66093.2025.11321479",
+    "authors": "L. Longarini; A. Rongoni; M. R. Prist; et al.",
+    "type": "conference"
+  },
+  {
+    "title": "ESN-based Distributed Inference Methods for Production Line Energy Forecasting",
+    "year": 2025,
+    "venue": "IFAC MIM / IFAC-PapersOnLine",
+    "doi": "10.1016/j.ifacol.2025.09.375",
+    "authors": "A. Bonci; L. Longarini; A. Rongoni; et al.",
+    "type": "conference"
+  },
+  {
+    "title": "Benchmark Analysis of YOLOv8 for Edge AI Video-Surveillance Applications",
+    "year": 2024,
+    "venue": "IEEE/ASME MESA",
+    "doi": "10.1109/MESA61532.2024.10704889",
+    "authors": "D. Berardini; L. Migliorelli; A. Rongoni; et al.",
+    "type": "conference"
+  },
+  {
+    "title": "A Low-Cost Cherenkov Detector to Be Tested in CERN's T9 Beam Line",
+    "year": 2018,
+    "venue": "Proceedings of Science",
+    "url": "https://cds.cern.ch/record/2669840",
+    "authors": "M. R. Felici; G. V. Pastanella; A. Rongoni; et al.",
+    "type": "conference"
+  }
 ]
