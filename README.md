@@ -209,8 +209,6 @@ Research in **computer vision, deep learning, Edge AI, predictive modelling and 
 <div align="center">
   <img height="170" align="center" alt="Alessandro's GitHub statistics" src="https://github-readme-stats.vercel.app/api?username=AlessandroRongoni&amp;show_icons=true&amp;theme=tokyonight&amp;hide_border=true" />
   <img height="170" align="center" alt="Top programming languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=AlessandroRongoni&amp;layout=compact&amp;langs_count=8&amp;theme=tokyonight&amp;hide_border=true" />
-  <br /><br />
-  <img width="96%" alt="GitHub profile trophies" src="https://github-profile-trophy.vercel.app/?username=AlessandroRongoni&amp;theme=tokyonight&amp;no-frame=true&amp;row=1&amp;column=6" />
 </div>
 
 <details>
